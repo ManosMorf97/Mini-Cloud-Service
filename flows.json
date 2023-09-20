@@ -1,0 +1,291 @@
+[
+    {
+        "id": "1037ebeeaedb2bae",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "81b227e15d842351",
+        "type": "ui_upload",
+        "z": "1037ebeeaedb2bae",
+        "group": "1afdd582990bbbcd",
+        "title": "upload",
+        "accept": "",
+        "name": "",
+        "order": 1,
+        "width": "5",
+        "height": 5,
+        "chunk": 256,
+        "transfer": "binary",
+        "x": 230,
+        "y": 260,
+        "wires": [
+            [
+                "3d5dd8af5467141f",
+                "3a248bf69546884b"
+            ]
+        ]
+    },
+    {
+        "id": "107bb182ea6a4065",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "1afdd582990bbbcd",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "gauge",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 850,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "3d5dd8af5467141f",
+        "type": "json",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 300,
+        "wires": [
+            [
+                "da2c652b39caf3fe",
+                "27125909df6878be",
+                "20d42b3427198bcd"
+            ]
+        ]
+    },
+    {
+        "id": "27125909df6878be",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "function 1",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsWrites\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nmsg.payload.max=1000000\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 680,
+        "y": 440,
+        "wires": [
+            [
+                "107bb182ea6a4065",
+                "aa51c3c23f3cb4a0"
+            ]
+        ]
+    },
+    {
+        "id": "aa51c3c23f3cb4a0",
+        "type": "debug",
+        "z": "1037ebeeaedb2bae",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "da2c652b39caf3fe",
+        "type": "debug",
+        "z": "1037ebeeaedb2bae",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "3a248bf69546884b",
+        "type": "debug",
+        "z": "1037ebeeaedb2bae",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "e6b5a361e05e143b",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "function 2",
+        "func": "msg.objectName=msg.file.name\nmsg.filePath='./'+msg.file.name\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 260,
+        "y": 460,
+        "wires": [
+            [
+                "992b7e3c708695f2"
+            ]
+        ]
+    },
+    {
+        "id": "fd76c922c129d704",
+        "type": "debug",
+        "z": "1037ebeeaedb2bae",
+        "name": "minio-error",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "35a8c894f220294e",
+        "type": "debug",
+        "z": "1037ebeeaedb2bae",
+        "name": "minio-success",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "992b7e3c708695f2",
+        "type": "files",
+        "z": "1037ebeeaedb2bae",
+        "files_name": "",
+        "host": "21e68ae2956bc2e2",
+        "files_operation": "fPutObject",
+        "files_bucket": "info",
+        "files_object": "objectName(msg.object.name)",
+        "files_filepath": "filePath(msg.filePath)",
+        "files_metadata": "",
+        "x": 260,
+        "y": 540,
+        "wires": [
+            [
+                "35a8c894f220294e"
+            ],
+            [
+                "fd76c922c129d704"
+            ]
+        ]
+    },
+    {
+        "id": "20d42b3427198bcd",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "function 3",
+        "func": "msg.payload.filename=msg.file.name\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "adb9b99e044a99d3"
+            ]
+        ]
+    },
+    {
+        "id": "adb9b99e044a99d3",
+        "type": "file",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "filename": "payload.filename",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 320,
+        "y": 380,
+        "wires": [
+            [
+                "e6b5a361e05e143b"
+            ]
+        ]
+    },
+    {
+        "id": "1afdd582990bbbcd",
+        "type": "ui_group",
+        "name": "Analytics",
+        "tab": "048bf2d3caf3dc2e",
+        "order": 2,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "21e68ae2956bc2e2",
+        "type": "minio-config",
+        "name": "MinIO Instance",
+        "host": "127.0.0.1",
+        "port": "7000",
+        "useSsl": false
+    },
+    {
+        "id": "048bf2d3caf3dc2e",
+        "type": "ui_tab",
+        "name": "Analysis",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
