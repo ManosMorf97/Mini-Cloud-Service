@@ -1,3 +1,3 @@
-function main(){
-	return{"msg":"Hey"}
+function main(params){
+	return{"pld":"Hey"+params.name}
 }

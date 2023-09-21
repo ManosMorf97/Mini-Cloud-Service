@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.apache.openwhisk.standalone.DockerVersionTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2023-09-21T17:27:34" hostname="manos-Virtual-Machine" time="0.066">
+  <properties/>
+  <testcase name="DockerVersion should parse docker version" classname="org.apache.openwhisk.standalone.DockerVersionTests" time="0.054"/>
+  <testcase name="DockerVersion should parse docker version from command output" classname="org.apache.openwhisk.standalone.DockerVersionTests" time="0.003"/>
+  <testcase name="DockerVersion should compare 2 versions semantically" classname="org.apache.openwhisk.standalone.DockerVersionTests" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

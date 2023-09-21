@@ -13,6 +13,15 @@ services:
       MINIO_ROOT_PASSWORD: 'z12#x1z29006'
     command: server --console-address ":9001" /data
     restart: always
+  node-red:
+    image: nodered/node-red
+    ports:
+    - "1880:1880"
+    volumes:
+      -node-red-storage:/data
+    restart: always
+
 
 volumes:
   minio-storage: {}
+  node-red-storage: {}
