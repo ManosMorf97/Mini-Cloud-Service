@@ -30,34 +30,6 @@
         ]
     },
     {
-        "id": "107bb182ea6a4065",
-        "type": "ui_gauge",
-        "z": "1037ebeeaedb2bae",
-        "name": "",
-        "group": "1afdd582990bbbcd",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "FsWrites",
-        "label": "units",
-        "format": "{{value| number:1}}",
-        "min": 0,
-        "max": "1000000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 940,
-        "y": 340,
-        "wires": []
-    },
-    {
         "id": "3d5dd8af5467141f",
         "type": "json",
         "z": "1037ebeeaedb2bae",
@@ -65,39 +37,31 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 450,
-        "y": 300,
+        "x": 430,
+        "y": 540,
         "wires": [
             [
                 "da2c652b39caf3fe",
-                "27125909df6878be",
                 "20d42b3427198bcd",
                 "cb4419ef7f98488b",
                 "061c9bedbdc508cc",
                 "b46475a4ffde5c43",
                 "dd06a9ecf993d2f3",
                 "bb5c917642c88c95",
-                "72f41dd46c258feb"
-            ]
-        ]
-    },
-    {
-        "id": "27125909df6878be",
-        "type": "function",
-        "z": "1037ebeeaedb2bae",
-        "name": "Avg_fsWrites",
-        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsWrites\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nmsg.payload.max=1000000\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 710,
-        "y": 360,
-        "wires": [
-            [
-                "107bb182ea6a4065"
+                "72f41dd46c258feb",
+                "67f32d8b7aa3d64b",
+                "aebcaff464034c11",
+                "fc1a7a848cc96e99",
+                "d611ba26b0d33e82",
+                "9ab50d5dfea9333d",
+                "328edb55b0c70dcd",
+                "93c726fce485b55a",
+                "9028359958a20359",
+                "31d2a685fbfa2dfe",
+                "172a14122e7db04c",
+                "05686108d2efd00b",
+                "436701d314e9aa53",
+                "ab804458e738935d"
             ]
         ]
     },
@@ -147,30 +111,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 260,
-        "y": 460,
+        "x": 160,
+        "y": 860,
         "wires": [
             [
                 "ca462d11776189c2"
             ]
         ]
-    },
-    {
-        "id": "fd76c922c129d704",
-        "type": "debug",
-        "z": "1037ebeeaedb2bae",
-        "name": "minio-error",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 450,
-        "y": 620,
-        "wires": []
     },
     {
         "id": "35a8c894f220294e",
@@ -185,8 +132,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 440,
-        "y": 500,
+        "x": 400,
+        "y": 880,
         "wires": []
     },
     {
@@ -201,8 +148,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 400,
-        "y": 340,
+        "x": 180,
+        "y": 680,
         "wires": [
             [
                 "adb9b99e044a99d3"
@@ -220,8 +167,8 @@
         "createDir": false,
         "overwriteFile": "true",
         "encoding": "none",
-        "x": 320,
-        "y": 380,
+        "x": 180,
+        "y": 800,
         "wires": [
             [
                 "e6b5a361e05e143b"
@@ -239,14 +186,14 @@
         "files_object": "objectName(msg.objectName)",
         "files_filepath": "filePath(msg.filePath)",
         "files_metadata": "",
-        "x": 260,
-        "y": 560,
+        "x": 240,
+        "y": 1020,
         "wires": [
             [
                 "35a8c894f220294e"
             ],
             [
-                "fd76c922c129d704"
+                "7e3f2b8e05b6f105"
             ]
         ]
     },
@@ -255,19 +202,19 @@
         "type": "http request",
         "z": "1037ebeeaedb2bae",
         "name": "",
-        "method": "POST",
+        "method": "GET",
         "ret": "txt",
-        "paytoqs": "ignore",
+        "paytoqs": "body",
         "url": "https://host.docker.internal:3233/api/v1/web/guest/default/hello_ac.json?name=Manos",
-        "tls": "69949566b5abf038",
+        "tls": "",
         "persist": false,
         "proxy": "",
         "insecureHTTPParser": false,
         "authType": "",
         "senderr": false,
         "headers": [],
-        "x": 1070,
-        "y": 280,
+        "x": 770,
+        "y": 560,
         "wires": [
             [
                 "5c8164bb82774fd6"
@@ -287,8 +234,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1220,
-        "y": 420,
+        "x": 1000,
+        "y": 560,
         "wires": []
     },
     {
@@ -296,7 +243,7 @@
         "type": "function",
         "z": "1037ebeeaedb2bae",
         "name": "Avg_fsReads",
-        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsReads\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nmsg.payload.max=1000000\nreturn msg;",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsReads\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -304,7 +251,7 @@
         "finalize": "",
         "libs": [],
         "x": 750,
-        "y": 460,
+        "y": 680,
         "wires": [
             [
                 "d14372e79480a1a2"
@@ -317,7 +264,7 @@
         "z": "1037ebeeaedb2bae",
         "name": "",
         "group": "1afdd582990bbbcd",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -335,8 +282,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 980,
-        "y": 460,
+        "x": 1120,
+        "y": 680,
         "wires": []
     },
     {
@@ -344,15 +291,15 @@
         "type": "function",
         "z": "1037ebeeaedb2bae",
         "name": "Avg_Transmition",
-        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkTransmitted\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nmsg.payload.max=1000000\nreturn msg;",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkTransmitted\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 805,
-        "y": 536,
+        "x": 750,
+        "y": 760,
         "wires": [
             [
                 "d74468362c6b3187"
@@ -365,7 +312,7 @@
         "z": "1037ebeeaedb2bae",
         "name": "",
         "group": "1afdd582990bbbcd",
-        "order": 2,
+        "order": 4,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -383,8 +330,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1020,
-        "y": 540,
+        "x": 1080,
+        "y": 740,
         "wires": []
     },
     {
@@ -392,15 +339,15 @@
         "type": "function",
         "z": "1037ebeeaedb2bae",
         "name": "Avg_Received",
-        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkReceived\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nmsg.payload.max=1000000\nreturn msg;",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkReceived\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 780,
-        "y": 620,
+        "x": 760,
+        "y": 840,
         "wires": [
             [
                 "4b0df815ab3b0f33"
@@ -413,7 +360,7 @@
         "z": "1037ebeeaedb2bae",
         "name": "",
         "group": "1afdd582990bbbcd",
-        "order": 2,
+        "order": 5,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -431,8 +378,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 985,
-        "y": 624,
+        "x": 1060,
+        "y": 820,
         "wires": []
     },
     {
@@ -440,15 +387,15 @@
         "type": "function",
         "z": "1037ebeeaedb2bae",
         "name": "Avg_Memory",
-        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"memory\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nmsg.payload.max=1000000\nreturn msg;",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"memory\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 700,
+        "x": 750,
+        "y": 880,
         "wires": [
             [
                 "256df16443cc9c9f"
@@ -461,7 +408,7 @@
         "z": "1037ebeeaedb2bae",
         "name": "",
         "group": "1afdd582990bbbcd",
-        "order": 2,
+        "order": 6,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -479,8 +426,8 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 1020,
-        "y": 700,
+        "x": 1040,
+        "y": 880,
         "wires": []
     },
     {
@@ -488,7 +435,7 @@
         "type": "function",
         "z": "1037ebeeaedb2bae",
         "name": "Avg_CPU",
-        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkTransmitted\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nmsg.payload.max=1000000\nreturn msg;",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"cpu\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -496,7 +443,7 @@
         "finalize": "",
         "libs": [],
         "x": 740,
-        "y": 760,
+        "y": 940,
         "wires": [
             [
                 "cdf0b4c21a99f88e"
@@ -509,7 +456,7 @@
         "z": "1037ebeeaedb2bae",
         "name": "",
         "group": "1afdd582990bbbcd",
-        "order": 2,
+        "order": 7,
         "width": 0,
         "height": 0,
         "gtype": "gage",
@@ -527,9 +474,692 @@
         "seg2": "",
         "diff": false,
         "className": "",
-        "x": 955,
-        "y": 764,
+        "x": 990,
+        "y": 940,
         "wires": []
+    },
+    {
+        "id": "67f32d8b7aa3d64b",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Min_fsWrites",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsWrites\"]))\n\nlet minimum=attribute[0]\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]<minimum)\n        minimum=attribute[i]\nmsg.payload=minimum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 500,
+        "wires": [
+            [
+                "930a2224c80f9e32"
+            ]
+        ]
+    },
+    {
+        "id": "d52293e55c33360c",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3025ab263fc23fdd",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "FsWritesMAX",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1100,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "7e3f2b8e05b6f105",
+        "type": "debug",
+        "z": "1037ebeeaedb2bae",
+        "name": "error-minio",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 190,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "930a2224c80f9e32",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3ed420c86ccf819f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "FsWritesMIN",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1150,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "aebcaff464034c11",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Avg_FsWrites",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsWrites\"]))\nlet count=attribute.length\nlet sum=attribute.reduce((a,b)=>a+b,0)\nmsg.payload=(sum/count)\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 620,
+        "wires": [
+            [
+                "7701e7b38911221e"
+            ]
+        ]
+    },
+    {
+        "id": "7701e7b38911221e",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "1afdd582990bbbcd",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "FsWrites",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "10000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1080,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "a378cf443a3cee3a",
+        "type": "ui_text",
+        "z": "1037ebeeaedb2bae",
+        "group": "3025ab263fc23fdd",
+        "order": 1,
+        "width": "5",
+        "height": "5",
+        "name": "",
+        "label": "EMPTYMAX",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 90,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "3c843b47011f3c85",
+        "type": "ui_text",
+        "z": "1037ebeeaedb2bae",
+        "group": "3ed420c86ccf819f",
+        "order": 1,
+        "width": "5",
+        "height": "5",
+        "name": "",
+        "label": "EMPTYMIN",
+        "format": "",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 110,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "fc1a7a848cc96e99",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Max_fsWrites",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsWrites\"]))\nlet maximum=0\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]>maximum)\n        maximum=attribute[i]\nmsg.payload=maximum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 440,
+        "wires": [
+            [
+                "d52293e55c33360c"
+            ]
+        ]
+    },
+    {
+        "id": "d611ba26b0d33e82",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Min_fsReads",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsReads\"]))\n\nlet minimum=attribute[0]\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]<minimum)\n        minimum=attribute[i]\nmsg.payload=minimum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 380,
+        "wires": [
+            [
+                "7c330f6acc9ebe09"
+            ]
+        ]
+    },
+    {
+        "id": "f6cac84bef739e5a",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3025ab263fc23fdd",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "FsReadsMAX",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1100,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7c330f6acc9ebe09",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3ed420c86ccf819f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "FsReadsMIN",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "10000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1150,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "9ab50d5dfea9333d",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Max_fsReads",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"fsReads\"]))\nlet maximum=0\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]>maximum)\n        maximum=attribute[i]\nmsg.payload=maximum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 320,
+        "wires": [
+            [
+                "f6cac84bef739e5a"
+            ]
+        ]
+    },
+    {
+        "id": "328edb55b0c70dcd",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Min_Transmission",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkTransmitted\"]))\n\nlet minimum=attribute[0]\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]<minimum)\n        minimum=attribute[i]\nmsg.payload=minimum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 260,
+        "wires": [
+            [
+                "0a596a45cb22bbd4"
+            ]
+        ]
+    },
+    {
+        "id": "1be6666bc37543b5",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3025ab263fc23fdd",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "TransmissionMAX",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1110,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "0a596a45cb22bbd4",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3ed420c86ccf819f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "TransmissionMIN",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1170,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "93c726fce485b55a",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Max_Transmission",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkTransmitted\"]))\nlet maximum=0\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]>maximum)\n        maximum=attribute[i]\nmsg.payload=maximum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 200,
+        "wires": [
+            [
+                "1be6666bc37543b5"
+            ]
+        ]
+    },
+    {
+        "id": "9028359958a20359",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Min_Recieved",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkReceived\"]))\n\nlet minimum=attribute[0]\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]<minimum)\n        minimum=attribute[i]\nmsg.payload=minimum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 140,
+        "wires": [
+            [
+                "a25a3abafb608d81"
+            ]
+        ]
+    },
+    {
+        "id": "84a5d4786c5ae9a3",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3025ab263fc23fdd",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "RecievedMAX",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1100,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a25a3abafb608d81",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3ed420c86ccf819f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "RecievedMIN",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1160,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "31d2a685fbfa2dfe",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Max_Recieved",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"networkReceived\"]))\nlet maximum=0\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]>maximum)\n        maximum=attribute[i]\nmsg.payload=maximum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 720,
+        "y": 80,
+        "wires": [
+            [
+                "84a5d4786c5ae9a3"
+            ]
+        ]
+    },
+    {
+        "id": "05686108d2efd00b",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Min_Memory",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"memory\"]))\n\nlet minimum=attribute[0]\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]<minimum)\n        minimum=attribute[i]\nmsg.payload=minimum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1060,
+        "wires": [
+            [
+                "c92ae22c4b02133d"
+            ]
+        ]
+    },
+    {
+        "id": "02fd9bbbdf426bbd",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3025ab263fc23fdd",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "MemoryMAX",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "100000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1110,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "c92ae22c4b02133d",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3ed420c86ccf819f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "MemoryMIN",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "100000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1170,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "172a14122e7db04c",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Max_Memory",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"memory\"]))\nlet maximum=0\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]>maximum)\n        maximum=attribute[i]\nmsg.payload=maximum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 1000,
+        "wires": [
+            [
+                "02fd9bbbdf426bbd"
+            ]
+        ]
+    },
+    {
+        "id": "ab804458e738935d",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Min_CPU",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"cpu\"]))\n\nlet minimum=attribute[0]\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]<minimum)\n        minimum=attribute[i]\nmsg.payload=minimum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 1180,
+        "wires": [
+            [
+                "ae7d2940ed87df91"
+            ]
+        ]
+    },
+    {
+        "id": "73dea4c6d2b9722e",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3025ab263fc23fdd",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "CPUMAX",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "100000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1080,
+        "y": 1120,
+        "wires": []
+    },
+    {
+        "id": "ae7d2940ed87df91",
+        "type": "ui_gauge",
+        "z": "1037ebeeaedb2bae",
+        "name": "",
+        "group": "3ed420c86ccf819f",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "gtype": "gage",
+        "title": "CPUMIN",
+        "label": "units",
+        "format": "{{value| number:1}}",
+        "min": 0,
+        "max": "100000000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1140,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "436701d314e9aa53",
+        "type": "function",
+        "z": "1037ebeeaedb2bae",
+        "name": "Max_CPU",
+        "func": "let attribute=msg.payload.map((x)=>parseFloat(x[\"cpu\"]))\nlet maximum=0\nfor(let i=0; i<attribute.length; i++)\n    if(attribute[i]>maximum)\n        maximum=attribute[i]\nmsg.payload=maximum\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 1120,
+        "wires": [
+            [
+                "73dea4c6d2b9722e"
+            ]
+        ]
     },
     {
         "id": "1afdd582990bbbcd",
@@ -538,7 +1168,7 @@
         "tab": "048bf2d3caf3dc2e",
         "order": 2,
         "disp": true,
-        "width": "12",
+        "width": "6",
         "collapse": false,
         "className": ""
     },
@@ -551,18 +1181,26 @@
         "useSsl": false
     },
     {
-        "id": "69949566b5abf038",
-        "type": "tls-config",
-        "name": "TLS1",
-        "cert": "",
-        "key": "",
-        "ca": "",
-        "certname": "",
-        "keyname": "",
-        "caname": "",
-        "servername": "",
-        "verifyservercert": false,
-        "alpnprotocol": ""
+        "id": "3025ab263fc23fdd",
+        "type": "ui_group",
+        "name": "MAX",
+        "tab": "048bf2d3caf3dc2e",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3ed420c86ccf819f",
+        "type": "ui_group",
+        "name": "MIN",
+        "tab": "048bf2d3caf3dc2e",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "048bf2d3caf3dc2e",

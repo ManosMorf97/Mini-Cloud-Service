@@ -16,12 +16,12 @@ services:
   node-red:
     image: nodered/node-red
     ports:
-    - "1880:1880"
+      - "1880:1880"
     volumes:
-    - node-red-storage:/data
+      - node-red-storage:/data
     restart: always
     extra_hosts:
-    - "host.docker.internal:host-gateway"
+      - "host.docker.internal:host-gateway"
 
 
 volumes:
