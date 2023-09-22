@@ -17,6 +17,7 @@ Open localhost:7001 and connect to minio with the credentials from docker-compos
 Create new bucket named info
 
 Open localhost:1880
+upload the file flows json
 Type the node of minio
 Set username and password the credentials as above
 
