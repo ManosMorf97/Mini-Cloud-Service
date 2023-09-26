@@ -11,7 +11,7 @@ install on node red these libraries:
 2) node-red-contrib-ui-upload
 3) node-red-dashboard
 4) node-red-contrib-graphs
-5) node-red-contrib-amqp
+5) node-red-contrib-amqp2
 
 Open localhost:7001 and connect to minio with the credentials from docker-compose -f docker-minionode-red-wsk.yaml
 Create new bucket named info
